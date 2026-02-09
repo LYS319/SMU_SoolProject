@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+    .write-main { max-width: 520px; margin: 60px auto; padding: 0 16px; }
+    .write-title { font-size: 2rem; font-weight: 900; color: #dc2626; margin-bottom: 24px; }
+    .write-form { display: flex; flex-direction: column; gap: 18px; }
+    .write-form input, .write-form textarea, .write-form select { width: 100%; padding: 10px; border: 1.5px solid #ffe5e5; border-radius: 6px; background: #fff8f8; box-sizing: border-box;}
+    .submit-btn { padding: 10px; background: #dc2626; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="write-main">
+    <div class="write-title">✍️ 글쓰기</div>
+    <form class="write-form" action="/community/write" method="POST">
+        <div>
+            <label>카테고리</label>
+            <select name="category" required>
+                <option value="SOLO">혼밥</option>
+                <option value="DATE">데이트</option>
+                <option value="WORK">회식</option>
+                <option value="ETC">기타</option>
+            </select>
+        </div>
+        <div>
+            <input type="text" name="title" placeholder="제목을 입력하세요" required />
+        </div>
+        <div>
+            <textarea name="content" placeholder="내용을 입력하세요" rows="10" required></textarea>
+        </div>
+        <div style="display:flex; justify-content:flex-end; gap:10px;">
+            <button type="submit" class="submit-btn">등록</button>
+            <button type="button" onclick="history.back()" style="padding:10px; background:white; border:1px solid #dc2626; color:#dc2626; border-radius:6px; cursor:pointer;">취소</button>
+        </div>
+    </form>
+</main>
+{% endblock %}

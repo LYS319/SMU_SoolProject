@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+    .board-main { max-width: 800px; margin: 50px auto; padding: 0 20px; }
+    .board-title { text-align: center; font-size: 2.2rem; font-weight: 900; color: #dc2626; margin-bottom: 40px; }
+    .post-list { display: flex; flex-direction: column; gap: 15px; }
+    .post-card { background: #fff; border: 1.5px solid #ffe5e5; border-radius: 14px; padding: 20px; box-shadow: 0 2px 10px rgba(220,38,38,0.06); }
+    .post-title { font-size: 1.2rem; font-weight: 700; color: #dc2626; margin-bottom: 5px; }
+    .post-meta { font-size: 0.9rem; color: #666; }
+    .empty-msg { text-align: center; color: #aaa; padding: 50px; }
+</style>
+{% endblock %}
+
+{% block content %}
+<main class="board-main">
+    <div class="board-title">{{ page_title }}</div>
+
+    <div class="post-list">
+        {% if posts %}
+            {% for post in posts %}
+            <div class="post-card">
+                <div class="post-title">{{ post.title }}</div>
+                <div class="post-meta">
+                    작성자: {{ post.writer_nickname }} | 조회수: {{ post.views }} | {{ post.created_at[:10] }}
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-msg">아직 등록된 게시글이 없습니다. 첫 글을 작성해보세요!</div>
+        {% endif %}
+    </div>
+
+    <button onclick="location.href='/community/write'" style="margin-top:30px; padding:12px 30px; background:#dc2626; color:white; border:none; border-radius:6px; font-weight:bold; cursor:pointer; float:right;">글쓰기</button>
+</main>
+{% endblock %}

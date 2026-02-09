@@ -1,60 +1,36 @@
-<!-- 메인 홈 -->
-<!doctype html>
-<html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>오늘도 맛있길</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-    </head>
-    <body>
-        <header>
-            <div class="logo">🍶 오늘도 맛있길</div>
-            <div class="auth-box">
-                {% if user %}
-                <span class="user-name">👋 <strong>{{ user.username }}</strong>님</span>
-                {% if user.role == 'ADMIN' %}
-                <a
-                    href="/admin"
-                    style="
-                        background-color: red;
-                        color: white;
-                        padding: 8px 15px;
-                        border-radius: 20px;
-                        margin-left: 5px;
-                    "
-                    >👑 관리자</a
-                >
-                {% endif %}
-                <a href="/logout" class="btn-logout">로그아웃</a>
-                {% else %}
-                <a href="/login" class="btn-login">로그인</a>
-                <a href="/register" class="btn-register">회원가입</a>
-                {% endif %}
-            </div>
-        </header>
+{% extends "base.html" %}
 
-        <main class="hero-section">
-            <h1 class="main-title">오늘, 당신의 술자리가<br />가장 <strong>맛있길</strong> 바랍니다.</h1>
-            <p class="sub-title">AI 안주 추천부터 혼술 친구 찾기까지</p>
+{% block extra_css %}
+<style>
+    /* 메인 페이지 전용 CSS */
+    .main-title { text-align: center; font-size: 3rem; font-weight: 900; color: #dc2626; margin: 60px 0 40px 0; letter-spacing: 2px; text-shadow: 0 4px 16px rgba(220,38,38,0.18), 0 1px 0 #fff; }
+    .main-buttons { display: flex; justify-content: center; gap: 24px; margin-bottom: 40px; }
+    .main-btn { padding: 32px 72px; font-size: 2.4rem; font-weight: 700; color: #fff; background: #dc2626; border: none; border-radius: 6px; cursor: pointer; transition: background 0.2s; box-shadow: 0 2px 8px rgba(220, 38, 38, 0.08); }
+    .main-btn:hover { background: #b91c1c; }
+    .community-preview { display: flex; justify-content: center; gap: 32px; margin-top: 48px; }
+    .community-card { background: #fff; border: 1.5px solid #ffe5e5; border-radius: 18px; box-shadow: 0 4px 16px rgba(220,38,38,0.07); padding: 28px 32px; min-width: 240px; display: flex; flex-direction: column; gap: 12px; }
+    .community-card .card-title { font-size: 1.25rem; font-weight: 800; color: #dc2626; }
+    .community-card .card-tag { font-size: 0.93rem; background: #fff5f5; color: #dc2626; border-radius: 12px; padding: 2px 14px; font-weight: 700; border: 1px solid #ffe5e5; width: fit-content; }
+</style>
+{% endblock %}
 
-            <div class="button-group">
-                <a href="/chatbot" class="card-btn ai-btn">
-                    <div class="icon">🤖</div>
-                    <div class="text">
-                        <h3>AI 추천 받기</h3>
-                        <p>지금 내 기분에 딱 맞는 안주는?</p>
-                    </div>
-                </a>
-
-                <a href="/community" class="card-btn comm-btn">
-                    <div class="icon">🗣️</div>
-                    <div class="text">
-                        <h3>커뮤니티</h3>
-                        <p>나만의 꿀조합 공유하러 가기</p>
-                    </div>
-                </a>
-            </div>
-        </main>
-    </body>
-</html>
+{% block content %}
+<main style="padding-bottom: 80px; min-height: 60vh">
+    <div class="main-title">🍽️ 테이스트메이트</div>
+    <div class="main-buttons">
+        <button class="main-btn" onclick="location.href='/chatbot'">🤖 AI추천</button>
+        <button class="main-btn" onclick="location.href='/community'">🧑‍🤝‍🧑 커뮤니티</button>
+    </div>
+    
+    <div class="community-preview">
+        <div class="community-card">
+            <div class="card-title">💬 강남 혼밥 맛집 공유</div>
+            <div class="card-tag">#강남</div>
+        </div>
+        <div class="community-card">
+            <div class="card-title">🔥 진짜 매운 맛집 추천</div>
+            <div class="card-tag">#서울</div>
+        </div>
+    </div>
+</main>
+{% endblock %}
