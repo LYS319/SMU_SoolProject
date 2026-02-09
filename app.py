@@ -16,28 +16,45 @@ def init_db():
     conn = sqlite3.connect('database.db')
     cursor = conn.cursor()
     
-    # (1) 사용자 테이블 (아이디, 비번, 닉네임, 권한)
+    # 1. 회원 테이블 (기존 유지 + role)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL UNIQUE,
-            password TEXT NOT NULL,
-            nickname TEXT NOT NULL,
-            role TEXT DEFAULT 'USER' 
+            username TEXT NOT NULL UNIQUE,  -- 로그인 ID
+            password TEXT NOT NULL,         -- 비밀번호
+            nickname TEXT NOT NULL,         -- 화면 표시용 이름
+            role TEXT DEFAULT 'USER'        -- 권한 (USER/ADMIN)
         )
     ''')
     
-    # (2) 게시글 테이블 (작성자 닉네임, 내용)
+    # 2. 게시글 테이블 (대폭 업그레이드!)
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS posts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            content TEXT NOT NULL
+            title TEXT NOT NULL,                 -- [NEW] 글 제목
+            content TEXT NOT NULL,               -- 글 내용
+            writer_id TEXT NOT NULL,             -- [NEW] 작성자 로그인 ID (나중에 수정/삭제 권한 확인용)
+            writer_nickname TEXT NOT NULL,       -- [NEW] 작성자 닉네임 (화면에 바로 보여주기 위함)
+            category TEXT DEFAULT 'free',        -- [NEW] 카테고리 (free:자유, review:후기, qna:질문)
+            views INTEGER DEFAULT 0,             -- [NEW] 조회수
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- [NEW] 작성 시간 (자동 입력됨)
         )
     ''')
+
+    # 3. 댓글 테이블 (팀원이 여유 되면 구현하라고 미리 만들어둠)
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS comments (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            post_id INTEGER NOT NULL,            -- 어느 게시글에 달린 댓글인지 (posts.id 연결)
+            writer_nickname TEXT NOT NULL,       -- 댓글 작성자 닉네임
+            content TEXT NOT NULL,               -- 댓글 내용
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 작성 시간
+            FOREIGN KEY(post_id) REFERENCES posts(id) ON DELETE CASCADE -- 게시글 지워지면 댓글도 삭제
+        )
+    ''')
+
     conn.commit()
     conn.close()
-
 # ==========================================
 # 2. 메인 화면 & 인증(로그인/회원가입)
 # ==========================================
