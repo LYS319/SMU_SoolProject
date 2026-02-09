@@ -1,63 +1,280 @@
 <!doctype html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>혼밥 커뮤니티</title>
-    <style>
-        body { margin: 0; font-family: 'Noto Sans KR', sans-serif; background: #fff; }
-        .header { display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; background: rgba(255,255,255,0.85); box-shadow: 0 2px 16px rgba(220,38,38,0.10); backdrop-filter: blur(12px); }
-        .header-left { display: flex; align-items: center; gap: 24px; }
-        .header-logo { display: flex; align-items: center; gap: 18px; font-size: 1.5rem; font-weight: bold; color: #dc2626; text-decoration: none; }
-        .menu-toggle-btn { background: none; border: none; font-size: 2.1rem; margin-left: 8px; cursor: pointer; border-radius: 8px; padding: 4px 12px; transition: background 0.18s; }
-        .menu-toggle-btn:hover { background: #ffe5e5; }
-        #mainNavMenu { min-width: 140px; animation: fadeInMenu 0.18s; position: absolute; top: 60px; left: 32px; background: #fff; box-shadow: 0 4px 16px rgba(220,38,38,0.13); border-radius: 12px; padding: 18px 24px 14px 24px; z-index: 1000; display: none; }
-        @keyframes fadeInMenu { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
-        .nav-emoji-btn { background: none; border: none; font-size: 1.7rem; margin: 0 2px; cursor: pointer; border-radius: 8px; padding: 4px 10px; transition: background 0.18s; }
-        .nav-emoji-btn:hover, .nav-emoji-btn.active { background: #ffe5e5; }
-        .header-right { display: flex; align-items: center; gap: 18px; }
-        .current-location { font-size: 1rem; color: #dc2626; background: #fff5f5; border: 1px solid #ffe5e5; border-radius: 4px; padding: 6px 16px; margin-left: 4px; font-weight: 600; }
-        .main-title { text-align: center; font-size: 2.2rem; font-weight: 900; color: #dc2626; margin: 48px 0 24px 0; letter-spacing: 1px; }
-        .desc { text-align: center; color: #b91c1c; margin-bottom: 32px; font-size: 1.1rem; }
-    </style>
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mainNavMenu');
-            if (menu.style.display === 'none' || menu.style.display === '') {
-                menu.style.display = 'block';
-                document.addEventListener('mousedown', handleMenuOutsideClick);
-            } else {
-                menu.style.display = 'none';
-                document.removeEventListener('mousedown', handleMenuOutsideClick);
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>혼밥 커뮤니티</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: 'Noto Sans KR', sans-serif;
+                background: #fff;
             }
-        }
-        function handleMenuOutsideClick(e) {
-            const menu = document.getElementById('mainNavMenu');
-            const btn = document.querySelector('.menu-toggle-btn');
-            if (!menu.contains(e.target) && !btn.contains(e.target)) {
-                menu.style.display = 'none';
-                document.removeEventListener('mousedown', handleMenuOutsideClick);
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 16px 32px;
+                background: rgba(255, 255, 255, 0.85);
+                box-shadow: 0 2px 16px rgba(220, 38, 38, 0.1);
+                backdrop-filter: blur(12px);
             }
-        }
-    </script>
-</head>
-<body>
-    <header class="header">
-        <div class="header-left">
-            <button class="menu-toggle-btn" aria-label="메뉴 열기" onclick="toggleMenu()">☰</button>
-            <a href="테이스트메이트.html" class="header-logo">테이스트메이트</a>
-            <nav class="main-nav" id="mainNavMenu">
-                <button class="nav-emoji-btn" onclick="location.href = '테이스트메이트.html'" title="홈">🏠 홈</button><br />
-                <button class="nav-emoji-btn" onclick="location.href = 'AICHAT.html'" title="AI추천">🤖 AI추천</button><br />
-                <button class="nav-emoji-btn" onclick="location.href = 'COMMUNITY.html'" title="커뮤니티">🧑‍🤝‍🧑 커뮤니티</button>
-            </nav>
+            .header-left {
+                display: flex;
+                align-items: center;
+                gap: 24px;
+            }
+            .header-logo {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #dc2626;
+                text-decoration: none;
+            }
+            .menu-toggle-btn {
+                background: none;
+                border: none;
+                font-size: 2.1rem;
+                margin-left: 8px;
+                cursor: pointer;
+                border-radius: 8px;
+                padding: 4px 12px;
+                transition: background 0.18s;
+            }
+            .menu-toggle-btn:hover {
+                background: #ffe5e5;
+            }
+            #mainNavMenu {
+                min-width: 140px;
+                animation: fadeInMenu 0.18s;
+                position: absolute;
+                top: 60px;
+                left: 32px;
+                background: #fff;
+                box-shadow: 0 4px 16px rgba(220, 38, 38, 0.13);
+                border-radius: 12px;
+                padding: 18px 24px 14px 24px;
+                z-index: 1000;
+                display: none;
+            }
+            @keyframes fadeInMenu {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .nav-emoji-btn {
+                background: none;
+                border: none;
+                font-size: 1.7rem;
+                margin: 0 2px;
+                cursor: pointer;
+                border-radius: 8px;
+                padding: 4px 10px;
+                transition: background 0.18s;
+            }
+            .nav-emoji-btn:hover,
+            .nav-emoji-btn.active {
+                background: #ffe5e5;
+            }
+            .header-right {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+            }
+            .current-location {
+                font-size: 1rem;
+                color: #dc2626;
+                background: #fff5f5;
+                border: 1px solid #ffe5e5;
+                border-radius: 4px;
+                padding: 6px 16px;
+                margin-left: 4px;
+                font-weight: 600;
+            }
+            .main-title {
+                text-align: center;
+                font-size: 2.2rem;
+                font-weight: 900;
+                color: #dc2626;
+                margin: 48px 0 24px 0;
+                letter-spacing: 1px;
+            }
+            .desc {
+                text-align: center;
+                color: #b91c1c;
+                margin-bottom: 32px;
+                font-size: 1.1rem;
+            }
+        </style>
+        <script>
+            function toggleMenu() {
+                const menu = document.getElementById('mainNavMenu');
+                if (menu.style.display === 'none' || menu.style.display === '') {
+                    menu.style.display = 'block';
+                    document.addEventListener('mousedown', handleMenuOutsideClick);
+                } else {
+                    menu.style.display = 'none';
+                    document.removeEventListener('mousedown', handleMenuOutsideClick);
+                }
+            }
+            function handleMenuOutsideClick(e) {
+                const menu = document.getElementById('mainNavMenu');
+                const btn = document.querySelector('.menu-toggle-btn');
+                if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                    menu.style.display = 'none';
+                    document.removeEventListener('mousedown', handleMenuOutsideClick);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle-btn" aria-label="메뉴 열기" onclick="toggleMenu()">☰</button>
+                <a href="테이스트메이트.html" class="header-logo">테이스트메이트</a>
+                <nav class="main-nav" id="mainNavMenu">
+                    <button class="nav-emoji-btn" onclick="location.href = '테이스트메이트.html'" title="홈">
+                        🏠 홈</button
+                    ><br />
+                    <button class="nav-emoji-btn" onclick="location.href = 'AICHAT.html'" title="AI추천">
+                        🤖 AI추천</button
+                    ><br />
+                    <button class="nav-emoji-btn" onclick="location.href = 'COMMUNITY.html'" title="커뮤니티">
+                        🧑‍🤝‍🧑 커뮤니티
+                    </button>
+                </nav>
+            </div>
+            <div class="header-right">
+                <button class="login-btn" onclick="location.href = 'LOGIN.html'">로그인</button>
+                <span class="current-location">📍 현재 위치</span>
+            </div>
+        </header>
+        <div class="main-title">🍱 혼밥 커뮤니티</div>
+        <div class="desc">혼자서도 즐거운 식사, 혼밥 맛집과 경험을 공유해보세요!</div>
+        <!-- 전체화면 채팅창 시작 -->
+        <style>
+            #chat-fullscreen-container {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: 100vw;
+                height: 100vh;
+                background: #fff5f5;
+                z-index: 9999;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+            }
+            #chat-fullscreen-header {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                background: #fff5f5;
+                padding-top: 48px;
+                z-index: 10001;
+            }
+            #chat-fullscreen-box {
+                flex: 1;
+                overflow-y: auto;
+                padding: 180px 6vw 0 6vw;
+                font-size: 2.1rem;
+                color: #222;
+            }
+            #chat-fullscreen-form {
+                display: flex;
+                gap: 18px;
+                padding: 32px 6vw 40px 6vw;
+                background: #fff5f5;
+            }
+            #chat-fullscreen-input {
+                flex: 1;
+                padding: 18px 24px;
+                border: 2.5px solid #dc2626;
+                border-radius: 16px;
+                font-size: 2rem;
+            }
+            #chat-fullscreen-form button {
+                padding: 18px 36px;
+                background: #dc2626;
+                color: #fff;
+                border: none;
+                border-radius: 16px;
+                font-size: 2rem;
+                font-weight: 700;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+            #chat-fullscreen-form button:hover {
+                background: #b91c1c;
+            }
+        </style>
+        <div id="chat-fullscreen-container">
+            <div id="chat-fullscreen-header">
+                <div class="main-title">🍱 혼밥 커뮤니티</div>
+                <div class="desc">혼자서도 즐거운 식사, 혼밥 맛집과 경험을 공유해보세요!</div>
+            </div>
+            <div id="chat-fullscreen-box"></div>
+            <form id="chat-fullscreen-form" autocomplete="off">
+                <input id="chat-fullscreen-input" type="text" placeholder="메시지를 입력하세요" />
+                <button type="submit">전송</button>
+            </form>
         </div>
-        <div class="header-right">
-            <button class="login-btn" onclick="location.href = 'LOGIN.html'">로그인</button>
-            <span class="current-location">📍 현재 위치</span>
-        </div>
-    </header>
-    <div class="main-title">🍱 혼밥 커뮤니티</div>
-    <div class="desc">혼자서도 즐거운 식사, 혼밥 맛집과 경험을 공유해보세요!</div>
-</body>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const chatBox = document.getElementById('chat-fullscreen-box');
+                const chatForm = document.getElementById('chat-fullscreen-form');
+                const chatInput = document.getElementById('chat-fullscreen-input');
+                chatForm.addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const msg = chatInput.value.trim();
+                    if (msg) {
+                        // 사용자 메시지 (왼쪽 정렬)
+                        const userDiv = document.createElement('div');
+                        userDiv.textContent = msg;
+                        userDiv.style.marginBottom = '18px';
+                        userDiv.style.padding = '18px 24px';
+                        userDiv.style.background = '#fff';
+                        userDiv.style.borderRadius = '14px';
+                        userDiv.style.color = '#dc2626';
+                        userDiv.style.fontWeight = '600';
+                        userDiv.style.fontSize = '2.1rem';
+                        userDiv.style.textAlign = 'left';
+                        userDiv.style.maxWidth = '70%';
+                        userDiv.style.marginRight = 'auto';
+                        chatBox.appendChild(userDiv);
+                        // AI 메시지 (오른쪽 정렬, 예시)
+                        setTimeout(function () {
+                            const aiDiv = document.createElement('div');
+                            aiDiv.textContent = 'AI 답변 예시';
+                            aiDiv.style.marginBottom = '18px';
+                            aiDiv.style.padding = '18px 24px';
+                            aiDiv.style.background = '#fff';
+                            aiDiv.style.borderRadius = '14px';
+                            aiDiv.style.color = '#222';
+                            aiDiv.style.fontWeight = '600';
+                            aiDiv.style.fontSize = '2.1rem';
+                            aiDiv.style.textAlign = 'right';
+                            aiDiv.style.maxWidth = '70%';
+                            aiDiv.style.marginLeft = 'auto';
+                            aiDiv.style.border = '2px solid #ffe5e5';
+                            chatBox.appendChild(aiDiv);
+                            chatBox.scrollTop = chatBox.scrollHeight;
+                        }, 400);
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                        chatInput.value = '';
+                    }
+                });
+            });
+        </script>
+    </body>
 </html>
