@@ -1,0 +1,60 @@
+<!-- 메인 홈 -->
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>오늘도 맛있길</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    </head>
+    <body>
+        <header>
+            <div class="logo">🍶 오늘도 맛있길</div>
+            <div class="auth-box">
+                {% if user %}
+                <span class="user-name">👋 <strong>{{ user.username }}</strong>님</span>
+                {% if user.role == 'ADMIN' %}
+                <a
+                    href="/admin"
+                    style="
+                        background-color: red;
+                        color: white;
+                        padding: 8px 15px;
+                        border-radius: 20px;
+                        margin-left: 5px;
+                    "
+                    >👑 관리자</a
+                >
+                {% endif %}
+                <a href="/logout" class="btn-logout">로그아웃</a>
+                {% else %}
+                <a href="/login" class="btn-login">로그인</a>
+                <a href="/register" class="btn-register">회원가입</a>
+                {% endif %}
+            </div>
+        </header>
+
+        <main class="hero-section">
+            <h1 class="main-title">오늘, 당신의 술자리가<br />가장 <strong>맛있길</strong> 바랍니다.</h1>
+            <p class="sub-title">AI 안주 추천부터 혼술 친구 찾기까지</p>
+
+            <div class="button-group">
+                <a href="/chatbot" class="card-btn ai-btn">
+                    <div class="icon">🤖</div>
+                    <div class="text">
+                        <h3>AI 추천 받기</h3>
+                        <p>지금 내 기분에 딱 맞는 안주는?</p>
+                    </div>
+                </a>
+
+                <a href="/community" class="card-btn comm-btn">
+                    <div class="icon">🗣️</div>
+                    <div class="text">
+                        <h3>커뮤니티</h3>
+                        <p>나만의 꿀조합 공유하러 가기</p>
+                    </div>
+                </a>
+            </div>
+        </main>
+    </body>
+</html>

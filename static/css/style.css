@@ -1,0 +1,72 @@
+/* 전체 설정 */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8f9fa; color: #333; }
+a { text-decoration: none; color: inherit; }
+
+/* 1. 상단 헤더 */
+header {
+    display: flex;
+    justify-content: space-between; /* 양쪽 끝으로 배치 */
+    align-items: center;
+    padding: 15px 30px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.logo { font-size: 1.2rem; font-weight: bold; color: #ff6b6b; }
+.auth-box { font-size: 0.9rem; }
+.btn-login, .btn-logout {
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: #333;
+    color: white;
+    font-size: 0.8rem;
+    margin-left: 10px;
+}
+/* 기존 btn-login 스타일 아래에 추가하세요 */
+.btn-register {
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: white;
+    color: #333;
+    font-size: 0.8rem;
+    margin-left: 5px;
+    border: 1px solid #ddd;
+}
+.btn-register:hover {
+    background-color: #f1f1f1;
+}
+.btn-logout { background-color: #ddd; color: #333; }
+
+/* 2. 메인 화면 */
+.hero-section {
+    text-align: center;
+    padding: 60px 20px;
+    margin-top: 50px;
+}
+.main-title { font-size: 2.5rem; margin-bottom: 10px; line-height: 1.3; }
+.main-title strong { color: #ff6b6b; }
+.sub-title { color: #666; margin-bottom: 50px; }
+
+/* 3. 버튼 카드 그룹 */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 버튼 사이 간격 */
+    flex-wrap: wrap; /* 모바일에서 줄바꿈 */
+}
+
+.card-btn {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    padding: 30px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+    border: 1px solid #eee;
+}
+.card-btn:hover { transform: translateY(-5px); } /* 마우스 올리면 살짝 뜸 */
+.icon { font-size: 3rem; margin-right: 20px; }
+.text h3 { font-size: 1.2rem; margin-bottom: 5px; }
+.text p { font-size: 0.9rem; color: #888; }

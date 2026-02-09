@@ -1,0 +1,32 @@
+# 1. [보안] 환경변수 (절대 올리면 안 됨)
+.env
+
+# 2. [Python] 파이썬이 자동으로 만드는 임시 파일들
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# 3. [가상환경] 용량이 엄청 크고, 컴퓨터마다 버전이 달라서 공유하면 안 됨
+venv/
+.venv/
+env/
+Lib/
+Scripts/
+
+# 4. [IDE 설정] 내 에디터 설정 파일 (팀원은 다른 에디터를 쓸 수도 있음)
+.idea/         # IntelliJ, PyCharm 설정 폴더
+.vscode/       # VS Code 설정 폴더 (선택사항, 보통 뺍니다)
+*.swp          # vi 에디터 임시 파일
+.classpath     # 이클립스
+.project       # 이클립스
+.settings/     # 이클립스
+
+# 5. [운영체제] 윈도우/맥이 자동으로 만드는 찌꺼기 파일
+.DS_Store      # 맥(Mac) 폴더 설정 파일
+Thumbs.db      # 윈도우 썸네일 파일
+
+# 6. [데이터베이스] (중요한 결정 필요! 아래 설명 참고)
+database.db
+*.db
+*.sqlite3

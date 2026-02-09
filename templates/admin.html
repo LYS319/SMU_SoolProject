@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        table { width: 80%; margin: 50px auto; border-collapse: collapse; background: white; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: center; }
+        th { background-color: #333; color: white; }
+        input { padding: 5px; text-align: center; }
+        button { padding: 5px 10px; background-color: #ff6b6b; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; margin-top: 30px;">👑 회원 관리 (관리자 전용)</h1>
+    <div style="text-align: center;">
+        <a href="/">메인으로 돌아가기</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID (번호)</th>
+                <th>아이디</th>
+                <th>닉네임 (수정가능)</th>
+                <th>권한 (USER/ADMIN)</th>
+                <th>저장</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in users %}
+            <tr>
+                <form action="/admin/update" method="post">
+                    <td>{{ u.id }} <input type="hidden" name="id" value="{{ u.id }}"></td>
+                    <td>{{ u.username }}</td>
+                    <td><input type="text" name="nickname" value="{{ u.nickname }}"></td>
+                    <td>
+                        <select name="role">
+                            <option value="USER" {% if u.role == 'USER' %}selected{% endif %}>USER</option>
+                            <option value="ADMIN" {% if u.role == 'ADMIN' %}selected{% endif %}>ADMIN</option>
+                        </select>
+                    </td>
+                    <td><button type="submit">수정</button></td>
+                </form>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
