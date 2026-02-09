@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>테이스트메이트</title>
+        <style>
+                        .menu-toggle-btn {
+                            background: none;
+                            border: none;
+                            font-size: 2.1rem;
+                            margin-left: 8px;
+                            cursor: pointer;
+                            border-radius: 8px;
+                            padding: 4px 12px;
+                            transition: background 0.18s;
+                        }
+                        .menu-toggle-btn:hover {
+                            background: #ffe5e5;
+                        }
+                        #mainNavMenu {
+                            min-width: 140px;
+                            animation: fadeInMenu 0.18s;
+                            position: absolute;
+                            top: 60px;
+                            left: 32px;
+                            background: #fff;
+                            box-shadow: 0 4px 16px rgba(220,38,38,0.13);
+                            border-radius: 12px;
+                            padding: 18px 24px 14px 24px;
+                            z-index: 1000;
+                            display: none;
+                        }
+                        @keyframes fadeInMenu {
+                            from { opacity: 0; transform: translateY(-10px); }
+                            to { opacity: 1; transform: translateY(0); }
+                        }
+            body {
+                margin: 0;
+                font-family: 'Noto Sans KR', sans-serif;
+                background: #fff;
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 16px 32px;
+                background: rgba(255,255,255,0.85);
+                box-shadow: 0 2px 16px rgba(220, 38, 38, 0.10);
+                backdrop-filter: blur(12px);
+            }
+            .header-left {
+                display: flex;
+                align-items: center;
+                gap: 24px;
+            }
+            .main-buttons {
+                display: flex;
+                justify-content: center;
+                    /* 상단 붉은색 라인 */
+                    .top-line {
+                        width: 100%;
+                        height: 6px;
+                        background: linear-gradient(90deg, #dc2626 60%, #fff 100%);
+                    }
+                gap: 24px;
+                margin-bottom: 40px;
+            }
+            .main-btn {
+                padding: 32px 72px;
+                font-size: 2.4rem;
+                font-weight: 700;
+                color: #fff;
+                background: #dc2626;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                transition: background 0.2s;
+                box-shadow: 0 2px 8px rgba(220, 38, 38, 0.08);
+            }
+            .main-btn:hover {
+                background: #b91c1c;
+            }
+
+            /* 커뮤니티 미리보기 카드 */
+            .community-preview {
+                display: flex;
+                justify-content: center;
+                gap: 32px;
+                margin: 48px 0 0 0;
+            }
+            .community-card {
+                background: #fff;
+                border: 1.5px solid #ffe5e5;
+                border-radius: 18px;
+                box-shadow: 0 4px 16px rgba(220,38,38,0.07);
+                padding: 28px 32px 22px 32px;
+                min-width: 240px;
+                max-width: 280px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+                position: relative;
+            }
+            .community-card .card-title {
+                font-size: 1.25rem;
+                font-weight: 800;
+                color: #dc2626;
+                margin-bottom: 4px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .community-card .card-count {
+                font-size: 0.98rem;
+                color: #b91c1c;
+                font-weight: 600;
+            }
+            .community-card .card-recent {
+                font-size: 1.05rem;
+                color: #222;
+                font-weight: 500;
+                margin-bottom: 2px;
+            }
+            .community-card .card-tag {
+                font-size: 0.93rem;
+                background: #fff5f5;
+                color: #dc2626;
+                border-radius: 12px;
+                padding: 2px 14px;
+                font-weight: 700;
+                border: 1px solid #ffe5e5;
+            }
+            .header-logo {
+                        display: flex;
+                        align-items: center;
+                        gap: 18px;
+                font-size: 1.5rem;
+                font-weight: bold;
+                color: #dc2626;
+                text-decoration: none;
+            }
+            .header-link {
+                font-size: 1rem;
+                color: #b91c1c;
+                text-decoration: none;
+                <div class="top-line"></div>
+                transition: color 0.2s;
+            }
+            .header-link:hover {
+                color: #dc2626;
+            }
+            /* 상단 중앙 타이틀 메인 영역으로 이동 */
+            .main-title {
+                text-align: center;
+                font-size: 3rem;
+                font-weight: 900;
+                    <div class="main-desc">AI가 추천해주는 맛집과 다양한 커뮤니티를 경험해보세요!</div>
+                color: #dc2626;
+                margin-top: 40px;
+                margin-bottom: 40px;
+                letter-spacing: 2px;
+                    text-shadow: 0 4px 16px rgba(220,38,38,0.18), 0 1px 0 #fff;
+            }
+            .header-right {
+                display: flex;
+                align-items: center;
+                gap: 18px;
+            }
+            .current-location {
+                font-size: 1rem;
+                color: #dc2626;
+                background: #fff5f5;
+                border: 1px solid #ffe5e5;
+                border-radius: 4px;
+                padding: 6px 16px;
+                margin-left: 4px;
+                font-weight: 600;
+            }
+            .login-btn {
+                padding: 8px 20px;
+                background: #dc2626;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+            .login-btn:hover {
+                background: #b91c1c;
+            }
+            .footer {
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                background: #fff;
+                box-shadow: 0 -2px 8px rgba(220, 38, 38, 0.08);
+                padding: 16px 32px 8px 32px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            .footer-tags {
+                display: flex;
+                gap: 10px;
+                margin-bottom: 8px;
+            }
+            .tag-btn {
+                font-size: 0.95rem;
+                padding: 4px 16px;
+                border-radius: 16px;
+                border: 1px solid #dc2626;
+                background: #fff5f5;
+                color: #dc2626;
+                font-weight: 600;
+                cursor: pointer;
+                transition: background 0.2s, color 0.2s;
+            }
+            .tag-btn:hover {
+                background: #dc2626;
+                color: #fff;
+            }
+            .ai-input-container {
+                width: 100%;
+                max-width: 600px;
+                display: flex;
+                gap: 8px;
+            }
+            .ai-input {
+                flex: 1;
+                padding: 10px 16px;
+                border: 1px solid #cbd5e1;
+                border-radius: 4px;
+                font-size: 1rem;
+            }
+            .ai-submit {
+                padding: 10px 20px;
+                background: #dc2626;
+                color: #fff;
+                border: none;
+                border-radius: 4px;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: background 0.2s;
+            }
+            .ai-submit:hover {
+                background: #b91c1c;
+            }
+            @media (max-width: 600px) {
+                .header,
+                .footer {
+                    padding: 12px 8px;
+                }
+                .ai-input-container {
+                    max-width: 100%;
+                }
+            }
+            /* 이모지 네비게이션 버튼 스타일 */
+            .nav-emoji-btn {
+                background: none;
+                border: none;
+                font-size: 1.7rem;
+                margin: 0 2px;
+                cursor: pointer;
+                border-radius: 8px;
+                padding: 4px 10px;
+                transition: background 0.18s;
+            }
+            .nav-emoji-btn:hover, .nav-emoji-btn.active {
+                background: #ffe5e5;
+            }
+        </style>
+        <script>
+            function toggleMenu() {
+                const menu = document.getElementById('mainNavMenu');
+                if (menu.style.display === 'none' || menu.style.display === '') {
+                    menu.style.display = 'block';
+                    document.addEventListener('mousedown', handleMenuOutsideClick);
+                } else {
+                    menu.style.display = 'none';
+                    document.removeEventListener('mousedown', handleMenuOutsideClick);
+                }
+            }
+
+            function handleMenuOutsideClick(e) {
+                const menu = document.getElementById('mainNavMenu');
+                const btn = document.querySelector('.menu-toggle-btn');
+                if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                    menu.style.display = 'none';
+                    document.removeEventListener('mousedown', handleMenuOutsideClick);
+                }
+            }
+            function handleLogin() {
+                const headerRight = document.querySelector('.header-right');
+                headerRight.innerHTML = `
+                <div class="user-info">
+                    <span class="user-avatar">👤</span>
+                    <span class="user-name">홍길동</span>
+                    <span class="current-location">📍 현재 위치</span>
+                </div>
+            `;
+            }
+        </script>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle-btn" aria-label="메뉴 열기" onclick="toggleMenu()">☰</button>
+                <a href="테이스트메이트.html" class="header-logo">테이스트메이트</a>
+                <nav class="main-nav" id="mainNavMenu">
+                    <button class="nav-emoji-btn" onclick="location.href = '테이스트메이트.html'" title="홈">
+                        🏠 홈</button
+                    ><br />
+                    <button class="nav-emoji-btn" onclick="location.href = 'AICHAT.html'" title="AI추천">
+                        🤖 AI추천</button
+                    ><br />
+                    <button class="nav-emoji-btn" onclick="location.href = 'COMMUNITY.html'" title="커뮤니티">
+                        🧑‍🤝‍🧑 커뮤니티
+                    </button>
+                </nav>
+            </div>
+            <div class="header-right">
+                <button class="login-btn" onclick="location.href = 'LOGIN.html'">로그인</button>
+                <span class="current-location">📍 현재 위치</span>
+            </div>
+        </header>
+        <main style="padding-top: 80px; padding-bottom: 80px; min-height: 60vh">
+            <div class="main-title">🍽️ 테이스트메이트</div>
+            <div class="main-buttons">
+                <button class="main-btn" onclick="location.href = 'AICHAT.html'">🤖 AI추천</button>
+                <button class="main-btn" onclick="location.href = 'COMMUNITY.html'">🧑‍🤝‍🧑 커뮤니티</button>
+            </div>
+            <div class="community-preview">
+                <div class="community-card">
+                    <div class="card-title">💬 강남 혼밥 맛집 공유</div>
+                    <div class="card-count">글 27개</div>
+                    <div class="card-recent">최근: "오늘 점심 어디가 좋을까요?"</div>
+                    <div class="card-tag">#강남</div>
+                </div>
+                <div class="community-card">
+                    <div class="card-title">🍜 라멘 덕후 모임</div>
+                    <div class="card-count">글 14개</div>
+                    <div class="card-recent">최근: "신상 라멘집 후기!"</div>
+                    <div class="card-tag">#전국</div>
+                </div>
+                <div class="community-card">
+                    <div class="card-title">🔥 진짜 매운 맛집 추천</div>
+                    <div class="card-count">글 33개</div>
+                    <div class="card-recent">최근: "불닭볶음면보다 매운 곳?"</div>
+                    <div class="card-tag">#서울</div>
+                </div>
+            </div>
+            <!-- 메인 컨텐츠 영역 -->
+        </main>
+        <!-- 하단 입력창 제거 -->
+    </body>
+</html>
